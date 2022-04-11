@@ -43,3 +43,12 @@ Route::middleware(['auth'])->group(function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(array(
+    'prefix' => '/api',
+    'namespace' => 'Api',
+    //'middleware' => [App\Http\Middleware\Authenticate::class],
+    'as' => 'api::'
+), function () {
+    Route::resource('products', 'ProductController');
+});
